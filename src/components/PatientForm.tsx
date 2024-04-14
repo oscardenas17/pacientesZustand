@@ -8,6 +8,9 @@ const PatientForm = () => {
   const addPatient = usePatientStore((state) => state.addPatient);
   const activeId = usePatientStore((state) => state.activeId);
   const patients = usePatientStore((state) => state.patients);
+  const updatePatient = usePatientStore((state) => state.updatePatient);
+
+  updatePatient;
   const {
     register,
     handleSubmit,
@@ -29,7 +32,12 @@ const PatientForm = () => {
     }
   }, [activeId]);
   const registerPatient = (data: DraftPatient) => {
-    addPatient(data);
+    if (activeId) {
+      updatePatient(data);
+    } else {
+      addPatient(data);
+    }
+
     reset();
   };
 
