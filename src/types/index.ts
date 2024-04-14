@@ -1,4 +1,4 @@
-export type patient ={
+export type Patient ={
     id: string;
     name: string;
     caretaker: string;
@@ -9,4 +9,4 @@ export type patient ={
 }
 
 
-export type DraftPatient = Omit<patient, 'id'>
+export type DraftPatient = Omit<Patient, 'id'>
