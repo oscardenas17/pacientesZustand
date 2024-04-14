@@ -1,14 +1,18 @@
 import { useForm } from "react-hook-form";
 import Error from "./Error";
+import { DraftPatient } from "../types";
 
 const PatientForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<DraftPatient>();
 
-  const registerPatient = () => {};
+  const registerPatient = (data: DraftPatient) => {
+    console.log(data);
+  };
+
   return (
     <div className="md:w-1/2 lg:w-2/5 mx-5">
       <h2 className="font-black text-3xl text-center">Seguimiento Pacientes</h2>
@@ -37,7 +41,7 @@ const PatientForm = () => {
               // maxLength: { value: 8, message: "Máximo 8 Caracteres" },
             })}
           />
-          {errors.name && <Error> {errors.name?.message?.toString()}</Error>}
+          {errors.name && <Error> {errors.name?.message}</Error>}
 
           {/* {errors.maxLength && <Error> {errors.maxLength?.message?.toString()}</Error>} */}
         </div>
@@ -55,9 +59,7 @@ const PatientForm = () => {
               required: "El nombre del propietario es obligatorio",
             })}
           />
-          {errors.caretaker && (
-            <Error> {errors.caretaker?.message?.toString()}</Error>
-          )}
+          {errors.caretaker && <Error> {errors.caretaker?.message}</Error>}
         </div>
 
         <div className="mb-5">
@@ -77,7 +79,7 @@ const PatientForm = () => {
               },
             })}
           />
-          {errors.email && <Error> {errors.email?.message?.toString()}</Error>}
+          {errors.email && <Error> {errors.email?.message}</Error>}
         </div>
 
         <div className="mb-5">
@@ -106,7 +108,6 @@ const PatientForm = () => {
             placeholder="Síntomas del paciente"
             {...register("symptoms", {
               required: "Los sintomas son obligatorios",
-            
             })}
           />
           {errors.symptoms && (
