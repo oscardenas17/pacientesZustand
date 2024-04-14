@@ -5,6 +5,7 @@ import { usePatientStore } from "../store";
 
 const PatientForm = () => {
   const addPatient = usePatientStore((state) => state.addPatient);
+  const activeId = usePatientStore((state) => state.activeId);
 
   const {
     register,
